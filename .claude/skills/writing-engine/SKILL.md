@@ -106,7 +106,7 @@ Voici ce que je connais de marketingskills (catégorisé par usage). Je route ve
 
 **Note** : la liste évolue. Avant de router, vérifier la version installée :
 ```
-ls ~/.claude/skills/marketingskills/skills/
+ls ~/.claude/plugins/marketplaces/marketingskills/skills/
 ```
 
 ---
@@ -349,7 +349,7 @@ Je passe le résultat par audit-engine si destiné à publication externe.
 ## 10. Format de handoff (vers marketingskills)
 
 ```markdown
-## BRIEF → marketingskills:[skill-name]
+## BRIEF → marketing-skills:[skill-name]
 
 ### Contexte (5 lignes)
 [minimum nécessaire]

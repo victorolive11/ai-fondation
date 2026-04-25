@@ -61,9 +61,9 @@ Si Superpowers s'active de son côté (sur du code), je laisse faire **après av
 
 | Niveau | Qui décide | Exemple |
 |---|---|---|
-| **Méta-business** (le mien) | project-orchestrator v2 | "Cet utilisateur veut une landing pour ScoreDecision Auto, cible patrons VO indé, objectif lead → utiliser marketingskills:page-cro après brief" |
+| **Méta-business** (le mien) | project-orchestrator v2 | "Cet utilisateur veut une landing pour ScoreDecision Auto, cible patrons VO indé, objectif lead → utiliser marketing-skills:page-cro après brief" |
 | **Méta-méthodologie** | superpowers/using-superpowers | "Pour implémenter cette feature, brainstorm → spec → plan → TDD → exécution sub-agents" |
-| **Production spécialisée** | marketingskills:cold-email, marketingskills:page-cro, etc. | Production réelle du livrable |
+| **Production spécialisée** | marketing-skills:cold-email, marketing-skills:page-cro, etc. | Production réelle du livrable |
 | **Mémoire/contexte** | claude-mem, mempalace | Persister ou retrouver le contexte projet |
 
 **Règle de fer** : je ne fais jamais le travail de niveau inférieur. Si je me retrouve à écrire du copy, c'est que j'ai mal routé.
@@ -102,18 +102,18 @@ Si Superpowers s'active de son côté (sur du code), je laisse faire **après av
 Demande catégorisée
     │
     ├── EXECUTE-MARKETING ?
-    │     ├── cold-email / outreach    → marketingskills:cold-email
-    │     ├── landing / page-cro       → marketingskills:page-cro
-    │     ├── copy général             → marketingskills:copywriting
-    │     ├── ad / creative            → marketingskills:ad-creative
-    │     ├── churn / retention        → marketingskills:churn-prevention
-    │     ├── analytics / tracking     → marketingskills:analytics-tracking
-    │     ├── A/B test                 → marketingskills:ab-test-setup
-    │     ├── SEO classique            → marketingskills:seo-audit / content-strategy
-    │     ├── SEO IA (AEO/GEO)         → marketingskills:ai-seo
-    │     ├── customer research        → marketingskills:customer-research
-    │     ├── revops / CRM             → marketingskills:revops
-    │     ├── sales enablement         → marketingskills:sales-enablement
+    │     ├── cold-email / outreach    → marketing-skills:cold-email
+    │     ├── landing / page-cro       → marketing-skills:page-cro
+    │     ├── copy général             → marketing-skills:copywriting
+    │     ├── ad / creative            → marketing-skills:ad-creative
+    │     ├── churn / retention        → marketing-skills:churn-prevention
+    │     ├── analytics / tracking     → marketing-skills:analytics-tracking
+    │     ├── A/B test                 → marketing-skills:ab-test-setup
+    │     ├── SEO classique            → marketing-skills:seo-audit / content-strategy
+    │     ├── SEO IA (AEO/GEO)         → marketing-skills:ai-seo
+    │     ├── customer research        → marketing-skills:customer-research
+    │     ├── revops / CRM             → marketing-skills:revops
+    │     ├── sales enablement         → marketing-skills:sales-enablement
     │     └── format pas couvert       → writing-engine v2 (méta) puis fallback
     │
     ├── EXECUTE-DEV ?
@@ -121,7 +121,35 @@ Demande catégorisée
     │     ├── debug                    → superpowers:systematic-debugging
     │     ├── plan technique           → superpowers:writing-plans
     │     ├── brief pour Claude Code   → claude-code-brief (custom)
+    │     ├── isolation worktree       → superpowers:using-git-worktrees
+    │     ├── code review demande      → superpowers:requesting-code-review
+    │     ├── verif avant claim done   → superpowers:verification-before-completion
     │     └── data spécifique projet   → data-engine (custom, ScoreDecision)
+    │
+    ├── EXECUTE-DESIGN ?               → gstack
+    │     ├── design d'un composant    → gstack:design / design-html
+    │     ├── revue design             → gstack:design-review / design-shotgun
+    │     ├── consultation design      → gstack:design-consultation
+    │     ├── plan revue design        → gstack:plan-design-review
+    │     └── slides / présentation    → frontend-slides
+    │
+    ├── EXECUTE-DEPLOY ?               → gstack
+    │     ├── ship feature             → gstack:ship
+    │     ├── canary release           → gstack:canary
+    │     ├── deploy + landing report  → gstack:land-and-deploy / landing-report
+    │     ├── freeze / unfreeze code   → gstack:freeze / unfreeze
+    │     └── document release         → gstack:document-release
+    │
+    ├── EXECUTE-OPS-INVESTIGATION ?    → gstack
+    │     ├── investigation incident   → gstack:investigate
+    │     ├── QA ciblé                 → gstack:qa / qa-only
+    │     ├── pair programming         → gstack:pair-agent
+    │     ├── retro / office hours     → gstack:retro / office-hours
+    │     └── santé projet             → gstack:health
+    │
+    ├── EXECUTE-WEB-ASSET ?            → web-asset-generator (favicon, OG image, app icon PWA)
+    │
+    ├── PLANNING-COMPLEX (5+ steps)    → planning-with-files:plan (parallèle de moi)
     │
     ├── RESEARCH                       → research-engine
     ├── VALIDATE                       → audit-engine
@@ -168,7 +196,7 @@ Avant tout handoff, je spécifie :
 
 🎁 Routing
 Écosystème  : [marketingskills / superpowers / custom / hybrid]
-Skill       : [nom spécifique, ex : marketingskills:cold-email]
+Skill       : [nom spécifique, ex : marketing-skills:cold-email]
 Skill 2nd   : [si chaînage explicite, sinon "aucun"]
 Mode        : [séquentiel / parallèle / standalone]
 
@@ -200,7 +228,7 @@ Ex : « crée une landing ScoreDecision avec formulaire de capture »
 
 ```
 Décomposition :
-1. Copy + structure landing → marketingskills:page-cro
+1. Copy + structure landing → marketing-skills:page-cro
 2. Implémentation React/Vercel → superpowers (brainstorm → plan → TDD)
 3. Workflow Make + Brevo → claude-code-brief (custom)
 
@@ -223,7 +251,7 @@ Ex : « écris un post LinkedIn pour ScoreDecision »
 ```
 Pré-requis : brand-voice.md ScoreDecision doit exister
 Si absent → escalade : « créer brand-voice.md d'abord (30 min), puis post »
-Si présent → marketingskills:copywriting + chargement du brand-voice en input
+Si présent → marketing-skills:copywriting + chargement du brand-voice en input
 ```
 
 ### Cas D — Demande exploratoire sans livrable
@@ -302,7 +330,7 @@ Garde-fou : ne jamais traiter un programme multi-sous-projets en un seul handoff
 ```
 🎯 Intention : EXECUTE-MARKETING
 📊 Ambiguïté : 2/6 (cible précisée, objectif clair, contraintes implicites)
-🎁 Routing : marketingskills:cold-email
+🎁 Routing : marketing-skills:cold-email
    Skill 2nd : aucun (audit-engine après si livrable destiné à envoi réel)
 
 DoD :
@@ -311,7 +339,7 @@ DoD :
 - Brand : ScoreDecision/brand-voice.md
 - Factuel : pas de chiffres → research-engine non requis
 
-→ Handoff direct à marketingskills:cold-email
+→ Handoff direct à marketing-skills:cold-email
 ```
 
 ### Exemple 2 — Implémentation feature (pur dev)
@@ -340,7 +368,7 @@ Après réponse :
 🚦 Décomposition obligatoire :
 
 Sous-tâche 1 : Copy + structure landing
-  Routing : marketingskills:page-cro
+  Routing : marketing-skills:page-cro
   Output : wireframe + copy validé
 
 Sous-tâche 2 : Implémentation
@@ -372,7 +400,7 @@ Handoff suivant : retour orchestrator pour décider si writing-engine v2 enchaî
 
 ### Exemple 5 — Skill explicitement nommé
 
-**Demande** : « utilise marketingskills:churn-prevention pour analyser mon funnel »
+**Demande** : « utilise marketing-skills:churn-prevention pour analyser mon funnel »
 
 ```
 🎯 Action : je laisse passer direct, je n'orchestre pas
